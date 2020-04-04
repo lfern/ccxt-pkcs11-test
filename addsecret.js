@@ -3,9 +3,11 @@ const {Pkcs11} = require('./lib/Pkcs11');
 const {getPass} = require('./lib/Password');
 const path = require('path');
 
-const [processPath, program, apiKey, secret, keyFormat] = process.argv;
+let [processPath, program, apiKey, secret, keyFormat] = process.argv;
 
-if (!keyFormat) keyFormat = 'ascii'
+if (!keyFormat) {
+    keyFormat = 'ascii';
+}
 if (!apiKey || !secret || ['ascii', "utf8", 'hex', 'base64'].indexOf(keyFormat) == -1){
     console.log(`usage: node ${path.basename(program)} api-key secret-key ascii|hex|base64|utf8`);
     process.exit();
